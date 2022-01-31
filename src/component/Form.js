@@ -1,8 +1,11 @@
 import {useState,useEffect} from 'react'
 
-const Form = ({userInput,setUserInput,formHandler}) => {
+const Form = ({userInput,setUserInput,formHandler,selectStatus,setSelectStatus}) => {
   const userInputHandler = (e) => {
     setUserInput(e.target.value)
+  }
+  const selectHandler = (e) => {
+    setSelectStatus(e.target.value)
   }
   
   return (
@@ -11,6 +14,11 @@ const Form = ({userInput,setUserInput,formHandler}) => {
       <input value={userInput} onChange={userInputHandler} className="input-form" placeholder="please input todos"  />
         <button className='btn-form-submit bg-warning'>+</button>
       </div>
+      <select onChange={selectHandler} >
+        <option value="all" >all</option>
+        <option value="completed" >completed</option>
+        <option value="uncompleted" >uncompleted</option>
+      </select>
     </form>
   )
 }
