@@ -13,6 +13,7 @@ function App() {
   const [todos,setTodos] = useState([]) 
   const [filteredTodos,setFilteredTodos] = useState([])
   // function
+  
   const formHandler = (e) => {
     e.preventDefault()
     if (userInput == "") return 
@@ -42,14 +43,19 @@ function App() {
   }
 
 
+  //useEffect 
+  useEffect(() => {
+    filterTodosHandler()
+  },[selectStatus,todos])
+
+
   return (
     <div className="App">
       <Navbar />
       <Header/>
       <Form selectStatus={selectStatus} filterTodosHandler={filterTodosHandler} setSelectStatus={setSelectStatus} formHandler={formHandler} userInput={userInput} setUserInput={setUserInput}/>
-
-      {todos.map(todosItem=> (
-        <TodosListComponent setTodos={setTodos} todos={todos} key={todosItem.id} todosItem={todosItem}/>
+      {filteredTodos.map(todosItem=> (
+        <TodosListComponent setTodos={setTodos} todos={todos} key={todosItem.id} todosItem={todosItem} filteredTodos={filteredTodos} />
       ))}
     </div>
   );
