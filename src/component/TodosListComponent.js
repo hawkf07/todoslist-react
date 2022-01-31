@@ -1,23 +1,25 @@
 
 export default function TodosListComponent ({todosItem,todos,setTodos}) {
 
+  const completeHandler = (e) => {
+    setTodos(prevState => {
+      const newTodos = prevState.map(item =>{
+            if (item.id == todosItem.id) {
+                return {
+                  ...item,
+                  completed:!item.completed
+                }
+            }
+        return item
+      })
+    return newTodos
+    })
+  }
+
   const deleteHandler = (e) => {
    console.log(todosItem.id)
    setTodos(todos.filter(item=> item.id!==todosItem.id))
   }
-  const completeHandler = (e) => {
-    setTodos(prevTodos => {
-      const newId = prevTodos.map(item => {
-        if (item.completed === false){
-        return {
-            ...item,
-            completed:!item.completed
-        }}
-      })
-      return newId
-    })
-  }
-
 
   return(
     <ul className={`container container-todoslist bg-dark p-3 ${todosItem.completed ? 'todos-completed' : ''} `}>
