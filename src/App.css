@@ -51,3 +51,9 @@ li {
 .todos-completed {
   opacity:0.4
 }
+select {
+  border:none;
+  padding:.4rem;
+  background:#ffffff;
+  width:50%;
+}
